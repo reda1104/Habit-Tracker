@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 part 'habit.g.dart';
@@ -23,9 +24,10 @@ class Habit extends HiveObject {
     required this.id,
     required this.name,
     required this.createdAt,
-    required this.iconCode,
+    int? iconCode,
     List<DateTime>? completionDates,
-  }) : completionDates = completionDates ?? [];
+  }) : completionDates = completionDates ?? [],
+       iconCode = iconCode ?? Icons.calendar_today.codePoint;
 }
 
 extension HabitStats on Habit {

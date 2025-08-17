@@ -20,15 +20,15 @@ class HabitAdapter extends TypeAdapter<Habit> {
       id: fields[0] as String,
       name: fields[1] as String,
       createdAt: fields[2] as DateTime,
+      iconCode: fields[4] as int?,
       completionDates: (fields[3] as List?)?.cast<DateTime>(),
-      iconCode: fields[4] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, Habit obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -36,7 +36,9 @@ class HabitAdapter extends TypeAdapter<Habit> {
       ..writeByte(2)
       ..write(obj.createdAt)
       ..writeByte(3)
-      ..write(obj.completionDates);
+      ..write(obj.completionDates)
+      ..writeByte(4)
+      ..write(obj.iconCode);
   }
 
   @override
