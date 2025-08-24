@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/services/notification_service.dart';
 import 'package:uuid/uuid.dart';
-import '../models/habit.dart';
 import 'package:hive/hive.dart';
+import '../models/habit.dart';
 
 class HabitsViewModel extends ChangeNotifier {
   late Box<Habit> _habitsBox;
@@ -10,6 +11,7 @@ class HabitsViewModel extends ChangeNotifier {
 
   HabitsViewModel() {
     _habitsBox = Hive.box<Habit>('habitsBox');
+    _reschedule(); // 🔔 schedule once at startup with existing habits
   }
 
   void addHabit(String name) {
@@ -21,6 +23,7 @@ class HabitsViewModel extends ChangeNotifier {
     );
     _habitsBox.put(habit.id, habit);
 
+    _reschedule(); // 🔔 re-schedule notifications
     notifyListeners();
   }
 
@@ -54,12 +57,20 @@ class HabitsViewModel extends ChangeNotifier {
 
   void deleteHabit(Habit habit) {
     habit.delete();
+    _reschedule(); // 🔔 re-schedule after delete
     notifyListeners();
   }
 
   void editHabit(Habit habit, String newName) {
     habit.name = newName;
     habit.save();
+    _reschedule(); // 🔔 re-schedule after rename
     notifyListeners();
+  }
+
+  // 🔔 internal helper
+  void _reschedule() {
+    final habitNames = habits.map((h) => h.name).toList();
+    scheduleHabitReminders(habitNames);
   }
 }

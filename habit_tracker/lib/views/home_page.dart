@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/helpers/utils.dart';
 import 'package:habit_tracker/models/habit.dart';
+import 'package:habit_tracker/services/notification_service.dart';
 import 'package:habit_tracker/view_models/habits_view_model.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+import 'package:habit_tracker/main.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
