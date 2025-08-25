@@ -27,7 +27,14 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/habit.png"
+
+
 dependencies:
+
   cupertino_icons: ^1.0.8
   fl_chart: ^1.0.0
   flutter:
@@ -41,6 +48,7 @@ dependencies:
   uuid: ^4.5.1
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
   build_runner: ^2.4.6
   flutter_lints: ^5.0.0
   flutter_test:
