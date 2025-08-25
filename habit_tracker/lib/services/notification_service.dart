@@ -3,7 +3,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -21,9 +20,9 @@ Future<void> initNotifications() async {
     tz.initializeTimeZones();
 
     // Get device timezone and set it properly
-    final String timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
-    tz.setLocalLocation(tz.getLocation(timeZoneName));
-    print('Timezone set to: $timeZoneName');
+
+    tz.setLocalLocation(tz.getLocation('Africa/Cairo'));
+    print('Timezone set to: Egypt');
 
     // Android + iOS init
     const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
