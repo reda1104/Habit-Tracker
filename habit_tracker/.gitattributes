@@ -10,3 +10,4 @@ linux/** linguist-vendored
 
 # Force Dart files to be detectable
 *.dart linguist-detectable=true
+*.yaml linguist-detectable=true
