@@ -1,0 +1,12 @@
+# Ignore platform-specific and generated code so Dart shows as main language
+android/** linguist-vendored
+ios/** linguist-vendored
+web/** linguist-vendored
+macos/** linguist-vendored
+windows/** linguist-vendored
+linux/** linguist-vendored
+*.g.dart linguist-generated
+*.freezed.dart linguist-generated
+
+# Force Dart files to be detectable
+*.dart linguist-detectable=true
